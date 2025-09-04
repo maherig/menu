@@ -21,42 +21,34 @@
       font-weight: 700;
     }
 
-    /* ضع هذا مكان تعريف body الحالي، واحذف body::before بالكامل */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'LyonArabic', serif !important;
-  color: var(--fg);
-  line-height: 1.8;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    /* خلفية بنقش قابل للتكرار + تغشية داكنة، ومقاسات متجاوبة للجوال */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'LyonArabic', serif !important;
+      color: var(--fg);
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-  /* خلفية بصورة + طبقة داكنة تغطي الصفحة كلها */
-  background:
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),  /* غيّر 0.35 حسب رغبتك */
-    url('background.png') center center / cover no-repeat fixed;
-  /* لون احتياطي في حال فشل تحميل الصورة */
-  background-color: #231B1E;
-}
+      /* 1) طبقة تغشية داكنة تغطي الصفحة كلها (لا تتكرر)  */
+      /* 2) طبقة النقش القابل للتكرار بحجم مناسب */
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        url('background.png');
+      background-repeat: no-repeat, repeat;          /* التغشية لا تتكرر، النقش يتكرر */
+      background-position: center center, top left;  /* أماكن الطبقتين */
+      background-attachment: fixed, scroll;          /* التغشية ثابتة، النقش يمرّ مع الصفحة */
+      background-size: cover, 160px 160px;           /* حجم التكرار الافتراضي للنقش (سطح مكتب) */
+    }
 
-
-/* الطبقة الداكنة تغطي كامل الصفحة وتجلس فوق الخلفية */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 0;                 /* فوق الخلفية */
-  pointer-events: none;       /* لا تمنع النقر */
-}
-
-/* تأكد أن المحتوى فوق الطبقة */
-.review-top, h1, .section {
-  position: relative;
-  z-index: 1;
-}
-
+    /* تصغير النقش على الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      body {
+        background-size: cover, 90px 90px;           /* اجعل النقش أصغر على الجوال */
+      }
     }
 
     h1 {
@@ -206,7 +198,7 @@ body::before {
     <div class="menu-item"><div class="name">ترمس</div><div class="price">20</div></div>
     <div class="menu-item"><div class="name">تعبئة ترمس</div><div class="price">15</div></div>
   </div>
-  
+
   <!-- الصوت: تشغيل تلقائي إن أمكن + تشغيل باللمس/النقر/التمرير عند الحظر -->
   <audio id="page-audio" preload="auto" playsinline>
     <source src="welcome.mp3" type="audio/mpeg">
@@ -258,9 +250,3 @@ body::before {
 
 </body>
 </html>
-
-
-
-
-
-
