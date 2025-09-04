@@ -36,7 +36,7 @@ body {
   /* اجعل التغشية أولاً لتكون فوق، ثم الصورة كطبقة تحتها */
   background-color: #231B1E; /* لون احتياطي */
   background-image:
-    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),  /* الطبقة العليا (الداكنة) */
+    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),  /* الطبقة العليا (الداكنة) */
     url('background.png');                                /* طبقة النقش المتكرر */
   background-repeat: no-repeat, repeat;                   /* التغشية لا تتكرر، النقش يتكرر */
   background-position: center center, top left;
@@ -47,7 +47,7 @@ body {
 /* على الجوال: صغّر النقش أكثر */
 @media (max-width: 768px) {
   body {
-    background-size: cover, 400px 400px;                  /* حجم النقش على الجوال */
+    background-size: cover, 500px 500px;                  /* حجم النقش على الجوال */
   }
 }
 
@@ -251,6 +251,7 @@ body {
 
 </body>
 </html>
+
 
 
 
