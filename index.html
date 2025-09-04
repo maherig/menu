@@ -101,6 +101,36 @@
 }
 
 
+.review-top a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;                  /* مسافة بين الأيقونة والنص */
+  padding: 0.6rem 1.2rem;
+  background-color: #231B1E;    /* خلفية داكنة */
+  color: #E6D6C7;               /* نص فاتح */
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 800;             /* أوضح */
+  text-decoration: none;
+  border: 2px solid #E6D6C7;    /* إطار فاتح حول الزر */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.review-top a:hover {
+  background-color: #3b2e32;    /* أفتح شوي عند المرور */
+  transform: scale(1.05);
+}
+
+.review-top a img {
+  width: 28px;
+  height: 28px;
+  /* بدون فلتر حتى تبقى الألوان الأصلية */
+}
+
+
+
+
+
     /* أعلى الصفحة: أيقونة + رابط المراجعة (يبقى صغير) */
     .review-top{
       margin-top:2.5rem;
@@ -141,11 +171,12 @@
 
   <!-- أعلى الصفحة: أيقونة + رابط المراجعة -->
   <div class="review-top">
-    <img src="Google_Maps_icon_(2020).svg" alt="Google Maps" class="custom-map-icon">
-    <a href="https://g.page/r/CVG0VrKrikYtEBE/review" target="_blank" rel="noopener">
-      شاركنا رأيك في الكافيه على قوقل ماب
-    </a>
-  </div>
+  <a href="https://g.page/r/CVG0VrKrikYtEBE/review" target="_blank" rel="noopener">
+    <img src="Google_Maps_icon_(2020).svg" alt="Google Maps">
+    شاركنا رأيك في الكافيه على قوقل ماب
+  </a>
+</div>
+
 
   <!-- العنوان الرئيسي -->
   <h1>فنجال وقدوع كافيه</h1>
@@ -297,5 +328,3 @@
 
 </body>
 </html>
-
-
