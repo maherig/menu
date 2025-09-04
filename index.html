@@ -180,12 +180,12 @@
     <div class="menu-item"><div class="name">ترمس</div><div class="price">20</div></div>
     <div class="menu-item"><div class="name">تعبئة ترمس</div><div class="price">15</div></div>
   </div>
-  <!-- صوت ترحيبي -->
-  <audio id="page-audio" preload="auto">
+  
+  <!-- الصوت: تشغيل تلقائي إن أمكن + تشغيل باللمس/النقر/التمرير عند الحظر -->
+  <audio id="page-audio" preload="auto" playsinline>
     <source src="welcome.mp3" type="audio/mpeg">
     متصفحك لا يدعم تشغيل الصوت.
   </audio>
-
   <button id="audio-cta" class="audio-cta" hidden>تشغيل الصوت</button>
 
   <script>
@@ -193,31 +193,43 @@
       const audio = document.getElementById('page-audio');
       const cta = document.getElementById('audio-cta');
 
-      // حاول التشغيل عند التحميل
+      function tryPlay(){
+        if(!audio) return;
+        audio.volume = 0.9;
+        return audio.play();
+      }
+      function showCTA(){ if(cta) cta.hidden = false; }
+
+      // محاولة تشغيل عند التحميل
       document.addEventListener('DOMContentLoaded', async () => {
-        try {
-          // تلميح للمتصفحات: ابدأ من مستوى صوت منخفض
-          audio.volume = 0.8;
-          await audio.play();
-        } catch (e) {
-          // إذا تم الحظر، أظهر زر تشغيل
-          cta.hidden = false;
-        }
+        try { await tryPlay(); } catch(e){ showCTA(); }
       });
 
-      // تشغيل عند النقر إذا كان محجوب
-      cta.addEventListener('click', async () => {
-        try {
-          cta.disabled = true;
-          await audio.play();
-          cta.hidden = true;
-        } catch (e) {
-          cta.disabled = false;
-          // يمكنك إضافة رسالة خطأ بسيطة عند الحاجة
-        }
+      // تشغيل عند أول تفاعل من المستخدم (متوافق مع سياسات iOS/Chrome)
+      const oncePlay = async () => {
+        try { await tryPlay(); if(cta) cta.hidden = true; detach(); }
+        catch(e){ showCTA(); }
+      };
+      function detach(){
+        window.removeEventListener('pointerdown', oncePlay, true);
+        window.removeEventListener('touchstart', oncePlay, true);
+        window.removeEventListener('keydown', oncePlay, true);
+        window.removeEventListener('scroll', oncePlay, true);
+      }
+      window.addEventListener('pointerdown', oncePlay, true);
+      window.addEventListener('touchstart', oncePlay, true);
+      window.addEventListener('keydown', oncePlay, true);
+      window.addEventListener('scroll', oncePlay, true);
+
+      if(cta){ cta.addEventListener('click', oncePlay); }
+
+      // إن كان ملف الصوت مفقودًا، أظهر تلميحًا على الزر
+      audio && audio.addEventListener('error', () => {
+        if(cta){ cta.hidden = false; cta.textContent = 'تشغيل الصوت (تأكد من welcome.mp3)'; }
       });
     })();
   </script>
 
 </body>
 </html>
+
