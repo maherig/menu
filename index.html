@@ -23,33 +23,33 @@
 
     /* خلفية بنقش قابل للتكرار + تغشية داكنة، ومقاسات متجاوبة للجوال */
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'LyonArabic', serif !important;
-      color: var(--fg);
-      line-height: 1.8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: 'LyonArabic', serif !important;
+  color: var(--fg);
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-      /* 1) طبقة تغشية داكنة تغطي الصفحة كلها (لا تتكرر)  */
-      /* 2) طبقة النقش القابل للتكرار بحجم مناسب */
-      background-color: var(--bg);
-      background-image:
-        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-        url('background.png');
-      background-repeat: no-repeat, repeat;          /* التغشية لا تتكرر، النقش يتكرر */
-      background-position: center center, top left;  /* أماكن الطبقتين */
-      background-attachment: fixed, scroll;          /* التغشية ثابتة، النقش يمرّ مع الصفحة */
-      background-size: cover, 250px 250px;           /* حجم التكرار الافتراضي للنقش (سطح مكتب) */
-    }
+  /* أولاً النقش، ثانياً التغشية الداكنة */
+  background-image:
+    url('background.png'),
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65));
+  background-repeat: repeat, no-repeat;
+  background-position: top left, center center;
+  background-attachment: scroll, fixed;
+  background-size: 160px 160px, cover;  /* النقش صغير + تغشية تغطي الصفحة */
+  background-color: #231B1E;            /* لون احتياطي */
+}
 
-    /* تصغير النقش على الشاشات الصغيرة */
-    @media (max-width: 768px) {
-      body {
-        background-size: cover, 180px 180px;           /* اجعل النقش أصغر على الجوال */
-      }
-    }
+/* على الجوال */
+@media (max-width: 768px) {
+  body {
+    background-size: 90px 90px, cover; /* النقش أصغر */
+  }
+}
+
 
     h1 {
       font-weight: 700;
@@ -250,5 +250,6 @@
 
 </body>
 </html>
+
 
 
