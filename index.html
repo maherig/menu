@@ -1,347 +1,185 @@
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>القائمة</title>
+  <style>
+    :root {
+      --bg: #231B1E;   /* خلفية داكنة */
+      --fg: #E6D6C7;   /* لون الخط */
+    }
 
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=IBM+Plex+Sans+Arabic&family=Rubik:ital,wght@0,300;0,600;1,400;1,600&display=swap');
-        body {
-             body {
-               
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            font-family: 'Rubik', sans-serif;
+    @font-face {
+      font-family: 'LyonArabic';
+      src: url('COMM - Lyon Arabic Display Light.otf') format('opentype');
+      font-weight: 300;
+    }
+    @font-face {
+      font-family: 'LyonArabic';
+      src: url('COMM - Lyon Arabic Display Bold.otf') format('opentype');
+      font-weight: 700;
+    }
 
-               
-        }
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      font-family: 'LyonArabic', serif !important;
+      color: var(--fg);
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .animated-background {
-            width: 100vw;
-            height: 100vh;  
-            background: url('https://cdn.glitch.me/312a01bc-ada8-4ef8-ad4f-aab5a894ceaa/Untitled%20video%20-%20Made%20with%20Clipchamp%207.gif?v=1709919542433')  center fixed;
-            background-size: cover;
-            animation: slide 20s linear infinite;
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
+    h1 {
+      font-weight: 700;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
 
-        @keyframes slide {
-            0% {
-                background-position: 0% 100%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
+    .review-top {
+      margin-top: 2.5rem; /* مسافة كافية فوق العبارة */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-        .content {
-            padding: 1vw;
-            /*text-align: center;*/
-            position: relative;
-            z-index: 1;
-            
-        }
-        
-        .centered-text {
-            text-align: center;
-            position: relative;
-             font-family: 'Rubik', sans-serif;
-             font-size: 24px;
-           font-weight: bold;
-            color: #fff;
-}
-        
-        
-        h1 {
-            color: red;
-        }
-@import url('https://cdn.glitch.global/6e5b7989-d327-40a2-b934-4949b3cbb927/Untitled%20video%20-%20Made%20with%20Clipchamp.gif?v=1702668490002');        table {
-            width: 95%;
-            border-collapse: collapse;
-            margin: 1vh auto; /* ضبط الهوامش للوسط */
-           
-            
-            font-family: 'Rubik', sans-serif;
+    .review-top a {
+      text-decoration: none;
+      color: var(--fg);   /* نفس لون النصوص الأخرى */
+      font-size: 20px;
+    }
 
-        }
+    .custom-map-icon {
+      width: 40px;
+      height: 40px;
+      filter: invert(48%) sepia(94%) saturate(2101%) hue-rotate(347deg) brightness(99%) contrast(101%);
+    }
 
-        td {
-            padding: 1vh;
-              color: #fff;
-              text-align: right ;
-          font-size: 24px;
-           font-weight: bold;
-            
-        }
+    .section {
+      margin: 2rem 0;
+      width: 80%;
+      max-width: 900px;
+    }
 
-        th {
-            padding: 1vh;
-            color: #fff;
-            text-align: left;
-          font-size: 24px;
-        }
-    </style>
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 22px;
+      padding: 0.6rem 0;
+    }
+
+    .menu-item .name {
+      flex: 1;
+      text-align: right;
+      padding-right: 2rem;
+    }
+
+    .menu-item .price {
+      flex: 0 0 auto;
+      text-align: left;
+      min-width: 120px;
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body>
-    <div class="animated-background"></div>
-   
 
-        <table><tbody><div class="centered-text">الضيافة</div>   </table></tbody> 
-            </div>
-            <div class="content">
-            <table><tbody>
-               
-              <tr>
-                <th>43-37-30</th>
-                <td>قهوة+شاهي+تمر</td>
-            </tr>
-			<tr>
-                <th>50-60</th>
-                <td>الضيافة مع جلسة خاصة</td>
-            </tr>
-            
-            <table><tbody><div class="centered-text">الشاهي</div>   </table></tbody> 
-            </div>
-            <div class="content">
-            <table><tbody>
-              
-              <tr>
-                <th>15-12-8-5</th>
-                <td>شاهي </td>
-            </tr>
-          <tr>
-                <th>15-12-8-5</th>
-                <td>شاهي مغربي </td>
-            </tr>
-            <tr>
-                <th>15-12-8-5</th>
-                <td>شاهي أخضر</td>
-            </tr>
-            <tr>
-                <th>15-12-8-5</th>
-                <td>شاهي ليمون </td>
-            </tr>
-            <tr>
-                <th>15-12-8-5</th>
-                <td>نعناع</td>
-            </tr>
-            <tr>
-                <th>15-12-8-5</th>
-                <td>زنجبيل</td>
-            </tr>
-            <tr>
-                <th>15-12-8-5</th>
-                <td>زنجبيل ليمون</td>
-            </tr>
-            <tr>
-                <th>15-12-8-5</th>
-                <td>كركدية</td>
-            </tr>
-             <tr>
-                <th>16-13-9-6</th>
-                <td>زنجبيل بالحليب</td>
-            </tr>
-            <tr>
-                <th>16-13-9-6</th>
-                <td>كرك</td>
-            </tr>
-            
-            <table><tbody><div class="centered-text">القهوة</div>   </table></tbody> 
-            </div>
-            <div class="content">
-            <table><tbody>
+  <div class="review-top">
+    <img src="Google_Maps_icon_(2020).svg" alt="Google Maps" class="custom-map-icon">
+    <a href="https://g.page/r/CVG0VrKrikYtEBE/review" target="_blank">
+      شاركنا رأيك في الكافيه على قوقل ماب
+    </a>
+  </div>
 
-            <tr>
-                <th>15-13-10-8</th>
-                <td>قهوة سعودية</td>
-            </tr>
-            <tr>
-                <th>12-10</th>
-                <td>كابتشينو</td>
-            </tr>
-            
-            <tr>
-                <th>12-10</th>
-                <td>لاتيه</td>
-            </tr>
-            <tr>
-                <th>8</th>
-                <td>أسبرسو</td>
-            </tr>
-            <tr>
-                <th>10-8</th>
-                <td>قهوة أمريكية</td>
-            </tr>
-            <tr>
-                <th>10-8</th>
-                <td>قهوة تركية</td>
-            </tr>
-            <tr>
-                <th>12-10</th>
-                <td>قهوة فرنسية</td>
-            </tr>
-            <tr>
-                <th>12-10</th>
-                <td>موكا </td>
-            </tr>
-            <tr>
-                <th>12-10</th>
-                <td>شوكولاته ساخنة</td>
-            </tr>
-            
-            
-           
-            <table><tbody><div class="centered-text">المشروبات الباردة</div>   </table></tbody> 
-            </div>
-            <div class="content">
-            <table><tbody>
-             <tr>
-                <th>12-10</th>
-                <td>موكا</td>
-            </tr> 
-              <tr>
-                <th>12-10</th>
-                <td>شوكولاته</td>
-            </tr> 
-            <tr>
-                <th>12-10</th>
-                <td>لاتيه </td>
-            </tr> 
-            <tr>
-                <th>12-10</th>
-                <td>قهوة بالتوفي </td>
-            </tr>
-            <tr>
-                <th>8-10</th>
-                <td>كركدية </td>
-            </tr>
-            <tr>
-                <th>14-12</th>
-                <td>ميلك شيك أريو </td>
-            </tr>
-            <tr>  
-                <th>14-12</th>
-                <td>ميلك شيك لوتس</td>
-            </tr>
-            <tr>
-                <th>14-12</th>
-                <td>ميلك شيك كيت كات</td>
-            </tr>
-            <tr>
-                <th>14-12</th>
-                <td>ميلك شيك سنكرز</td>
-            </tr>
-            <tr>
-                <th>16-14</th>
-                <td>كود ريد مع النكهات</td>
-            </tr>
-            <tr>
-                <th>16-14</th>
-                <td>بلاك مع النكهات</td>
-            </tr>
-               <tr>
-                <th>14-12</th>
-                <td>بيبسي مع النكهات</td>
-            </tr>
-            <tr>
-                <th>14-12</th>
-                <td>سفن اب مع النكهات</td>
-            </tr>
-            <tr>
-                <th>10</th>
-                <td>عصير برتقال</td>
-            </tr>
-            <tr>
-                <th>10</th>
-                <td>عصير ليمون نعناع</td>
-            </tr>
-            <tr>
-                <th>1</th>
-                <td>ماء</td>
-            </tr>
-            <table><tbody><div class="centered-text">الحلا</div>   </table></tbody> 
-            </div>
-            <div class="content">
-            <table><tbody>
-              
-              <tr>
-                <th>14</th>
-                <td>شيزكيك</td>
-            </tr>
-              <tr>
-                <th>7</th>
-                <td>كوكيز فانيلا</td>
-            </tr>
-              <tr>
-                <th>7</th>
-                <td>كوكيز شوكولاته</td>
-            </tr>
-            <tr>
-                <th>6</th>
-                <td>دونات مكسرات</td>
-            </tr>
-            <tr>
-                <th>6</th>
-                <td>دونات شوكولاته</td>
-            </tr>
-            <tr>
-                <th>8</th>
-                <td>براونيز</td>
-            </tr>
-            <tr>
-                <th>6</th>
-                <td>بسبوسة</td>
-            </tr>
-            <tr>
-                <th>2</th>
-                <td>طحينة</td>
-            </tr>
-            <tr>
-                <th>4</th>
-                <td>قشطة</td>
-            </tr>
-            <tr>
-                <th>5</th>
-                <td>تمر سكري</td>
-            </tr>
-            <tr>
-                <th>5</th>
-                <td>تمر خلاص</td>
-            </tr>
-            
-                        <table><tbody><div class="centered-text">خدماتنا</div>   </table></tbody> 
-            </div>
-            <div class="content">
-            <table><tbody>
-              
-             <tr>
-                <th>15</th>
-                <td>جلسة خاصة</td>
-            </tr>
-            <tr>
-                <th>15</th>
-                <td>نص ساعة بلاستيشين</td>
-            </tr>
-            <tr>
-                <th>20</th>
-                <td>ترمس</td>
-            </tr>
-            <tr>
-                <th>15</th>
-                <td>تعبئة ترمس</td>
-            </tr>
-        </tbody></table>
+  <h1>فنجال وقدوع كافيه</h1>
 
-        
-    </div>
+  <div class="section">
+    <div class="section-title">الضيافة</div>
+    <div class="menu-item"><div class="name">قهوة + شاهي + تمر</div><div class="price">43-37-30</div></div>
+    <div class="menu-item"><div class="name">الضيافة مع جلسة خاصة</div><div class="price">50-60</div></div>
+  </div>
 
-</body></html>
+  <div class="section">
+    <div class="section-title">الشاهي</div>
+    <div class="menu-item"><div class="name">شاهي</div><div class="price">15-12-8-5</div></div>
+    <div class="menu-item"><div class="name">شاهي مغربي</div><div class="price">15-12-8-5</div></div>
+    <div class="menu-item"><div class="name">شاهي أخضر</div><div class="price">15-12-8-5</div></div>
+    <div class="menu-item"><div class="name">شاهي ليمون</div><div class="price">15-12-8-5</div></div>
+    <div class="menu-item"><div class="name">نعناع</div><div class="price">15-12-8-5</div></div>
+    <div class="menu-item"><div class="name">زنجبيل</div><div class="price">15-12-8-5</div></div>
+    <div class="menu-item"><div class="name">زنجبيل ليمون</div><div class="price">15-12-8-5</div></div>
+    <div class="menu-item"><div class="name">كركدية</div><div class="price">15-12-8-5</div></div>
+    <div class="menu-item"><div class="name">زنجبيل بالحليب</div><div class="price">16-13-9-6</div></div>
+    <div class="menu-item"><div class="name">كرك</div><div class="price">16-13-9-6</div></div>
+  </div>
 
+  <div class="section">
+    <div class="section-title">القهوة</div>
+    <div class="menu-item"><div class="name">قهوة سعودية</div><div class="price">15-13-10-8</div></div>
+    <div class="menu-item"><div class="name">كابتشينو</div><div class="price">12-10</div></div>
+    <div class="menu-item"><div class="name">لاتيه</div><div class="price">12-10</div></div>
+    <div class="menu-item"><div class="name">إسبرسو</div><div class="price">8</div></div>
+    <div class="menu-item"><div class="name">قهوة أمريكية</div><div class="price">10-8</div></div>
+    <div class="menu-item"><div class="name">قهوة تركية</div><div class="price">10-8</div></div>
+    <div class="menu-item"><div class="name">قهوة فرنسية</div><div class="price">12-10</div></div>
+    <div class="menu-item"><div class="name">موكا</div><div class="price">12-10</div></div>
+    <div class="menu-item"><div class="name">شوكولاته ساخنة</div><div class="price">12-10</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">المشروبات الباردة</div>
+    <div class="menu-item"><div class="name">موكا</div><div class="price">12-10</div></div>
+    <div class="menu-item"><div class="name">شوكولاته</div><div class="price">12-10</div></div>
+    <div class="menu-item"><div class="name">لاتيه</div><div class="price">12-10</div></div>
+    <div class="menu-item"><div class="name">قهوة بالتوفي</div><div class="price">12-10</div></div>
+    <div class="menu-item"><div class="name">كركدية</div><div class="price">8-10</div></div>
+    <div class="menu-item"><div class="name">ميلك شيك أريو</div><div class="price">14-12</div></div>
+    <div class="menu-item"><div class="name">ميلك شيك لوتس</div><div class="price">14-12</div></div>
+    <div class="menu-item"><div class="name">ميلك شيك كيت كات</div><div class="price">14-12</div></div>
+    <div class="menu-item"><div class="name">ميلك شيك سنكرز</div><div class="price">14-12</div></div>
+    <div class="menu-item"><div class="name">كود ريد مع النكهات</div><div class="price">15-12</div></div>
+    <div class="menu-item"><div class="name">بلاك مع النكهات</div><div class="price">16-14</div></div>
+    <div class="menu-item"><div class="name">بيبسي مع النكهات</div><div class="price">14-12</div></div>
+    <div class="menu-item"><div class="name">سفن أب مع النكهات</div><div class="price">14-12</div></div>
+    <div class="menu-item"><div class="name">عصير برتقال</div><div class="price">10</div></div>
+    <div class="menu-item"><div class="name">عصير ليمون نعناع</div><div class="price">10</div></div>
+    <div class="menu-item"><div class="name">ماء</div><div class="price">1</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">الحلا</div>
+    <div class="menu-item"><div class="name">شيزكيك</div><div class="price">14</div></div>
+    <div class="menu-item"><div class="name">كوكيز فانيلا</div><div class="price">7</div></div>
+    <div class="menu-item"><div class="name">كوكيز شوكولاته</div><div class="price">7</div></div>
+    <div class="menu-item"><div class="name">دونات مكسرات</div><div class="price">6</div></div>
+    <div class="menu-item"><div class="name">دونات شوكولاته</div><div class="price">6</div></div>
+    <div class="menu-item"><div class="name">براونيز</div><div class="price">8</div></div>
+    <div class="menu-item"><div class="name">بسبوسة</div><div class="price">6</div></div>
+    <div class="menu-item"><div class="name">طحينة</div><div class="price">2</div></div>
+    <div class="menu-item"><div class="name">قشطة</div><div class="price">4</div></div>
+    <div class="menu-item"><div class="name">تمر سكري</div><div class="price">5</div></div>
+    <div class="menu-item"><div class="name">تمر خلاص</div><div class="price">5</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">خدماتنا</div>
+    <div class="menu-item"><div class="name">جلسة خاصة</div><div class="price">15</div></div>
+    <div class="menu-item"><div class="name">نص ساعة بلايستيشن</div><div class="price">15</div></div>
+    <div class="menu-item"><div class="name">ترمس</div><div class="price">20</div></div>
+    <div class="menu-item"><div class="name">تعبئة ترمس</div><div class="price">15</div></div>
+  </div>
+
+</body>
+</html>
