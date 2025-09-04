@@ -22,25 +22,38 @@
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg);
-      font-family: 'LyonArabic', serif !important;
-      color: var(--fg);
-      line-height: 1.8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-	  background: url('background.png') no-repeat center center fixed;
-      background-size: cover;
-     }
-    body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5); /* طبقة شفافة */
-    z-index: -1;
-    }
+  position: relative;           /* لتكوين سياق تكديس للمحتوى فوق الطبقة */
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  font-family: 'LyonArabic', serif !important;
+  color: var(--fg);
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* صورة الخلفية */
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* الطبقة الداكنة تغطي كامل الصفحة وتجلس فوق الخلفية */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 0;                 /* فوق الخلفية */
+  pointer-events: none;       /* لا تمنع النقر */
+}
+
+/* تأكد أن المحتوى فوق الطبقة */
+.review-top, h1, .section {
+  position: relative;
+  z-index: 1;
+}
+
     }
 
     h1 {
@@ -242,6 +255,5 @@
 
 </body>
 </html>
-
 
 
