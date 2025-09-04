@@ -180,6 +180,44 @@
     <div class="menu-item"><div class="name">ترمس</div><div class="price">20</div></div>
     <div class="menu-item"><div class="name">تعبئة ترمس</div><div class="price">15</div></div>
   </div>
+  <!-- صوت ترحيبي -->
+  <audio id="page-audio" preload="auto">
+    <source src="welcome.mp3" type="audio/mpeg">
+    متصفحك لا يدعم تشغيل الصوت.
+  </audio>
+
+  <button id="audio-cta" class="audio-cta" hidden>تشغيل الصوت</button>
+
+  <script>
+    (function(){
+      const audio = document.getElementById('page-audio');
+      const cta = document.getElementById('audio-cta');
+
+      // حاول التشغيل عند التحميل
+      document.addEventListener('DOMContentLoaded', async () => {
+        try {
+          // تلميح للمتصفحات: ابدأ من مستوى صوت منخفض
+          audio.volume = 0.8;
+          await audio.play();
+        } catch (e) {
+          // إذا تم الحظر، أظهر زر تشغيل
+          cta.hidden = false;
+        }
+      });
+
+      // تشغيل عند النقر إذا كان محجوب
+      cta.addEventListener('click', async () => {
+        try {
+          cta.disabled = true;
+          await audio.play();
+          cta.hidden = true;
+        } catch (e) {
+          cta.disabled = false;
+          // يمكنك إضافة رسالة خطأ بسيطة عند الحاجة
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
