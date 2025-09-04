@@ -21,11 +21,10 @@
       font-weight: 700;
     }
 
-    body {
-  position: relative;           /* لتكوين سياق تكديس للمحتوى فوق الطبقة */
+    /* ضع هذا مكان تعريف body الحالي، واحذف body::before بالكامل */
+body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg);
   font-family: 'LyonArabic', serif !important;
   color: var(--fg);
   line-height: 1.8;
@@ -33,10 +32,14 @@
   flex-direction: column;
   align-items: center;
 
-  /* صورة الخلفية */
-  background: url('background.jpg') no-repeat center center fixed;
-  background-size: cover;
+  /* خلفية بصورة + طبقة داكنة تغطي الصفحة كلها */
+  background:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),  /* غيّر 0.35 حسب رغبتك */
+    url('background.jpg') center center / cover no-repeat fixed;
+  /* لون احتياطي في حال فشل تحميل الصورة */
+  background-color: #231B1E;
 }
+
 
 /* الطبقة الداكنة تغطي كامل الصفحة وتجلس فوق الخلفية */
 body::before {
@@ -255,5 +258,6 @@ body::before {
 
 </body>
 </html>
+
 
 
