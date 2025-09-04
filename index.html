@@ -1,123 +1,139 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>القائمة</title>
+
   <style>
-    :root {
-      --bg: #231B1E;   /* خلفية داكنة */
-      --fg: #E6D6C7;   /* لون الخط */
+    :root{
+      --bg:#231B1E;   /* خلفية داكنة */
+      --fg:#E6D6C7;   /* لون الخط */
+      --headline-size: clamp(26px, 4vw, 44px);  /* حجم العناوين */
+      --item-size: clamp(22px, 3.2vw, 34px);    /* حجم أسماء الأصناف */
+      --price-size: clamp(20px, 3vw, 28px);   /* حجم الأسعار */
     }
 
-    @font-face {
-      font-family: 'LyonArabic';
-      src: url('COMM - Lyon Arabic Display Light.otf') format('opentype');
-      font-weight: 300;
+    @font-face{
+      font-family:'LyonArabic';
+      src:url('COMM - Lyon Arabic Display Light.otf') format('opentype');
+      font-weight:300;
     }
-    @font-face {
-      font-family: 'LyonArabic';
-      src: url('COMM - Lyon Arabic Display Bold.otf') format('opentype');
-      font-weight: 700;
-    }
-
-    /* خلفية بنقش قابل للتكرار + تغشية داكنة، ومقاسات متجاوبة للجوال */
-    /* خلفية بنقش متكرر + تغشية داكنة أعلى الصورة */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'LyonArabic', serif !important;
-  color: var(--fg);
-  line-height: 1.8;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  /* اجعل التغشية أولاً لتكون فوق، ثم الصورة كطبقة تحتها */
-  background-color: #231B1E; /* لون احتياطي */
-  background-image:
-    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),  /* الطبقة العليا (الداكنة) */
-    url('background.png');                                /* طبقة النقش المتكرر */
-  background-repeat: no-repeat, repeat;                   /* التغشية لا تتكرر، النقش يتكرر */
-  background-position: center center, top left;
-  background-size: cover, 500px 500px;                    /* حجم النقش على الكمبيوتر */
-  background-attachment: scroll, scroll;                  /* متوافق أكثر مع الجوال من fixed */
-}
-
-/* على الجوال: صغّر النقش أكثر */
-@media (max-width: 768px) {
-  body {
-    background-size: cover, 500px 500px;                  /* حجم النقش على الجوال */
-  }
-}
-
-
-    h1 {
-      font-weight: 700;
-      margin: 1.5rem 0;
-      text-align: center;
+    @font-face{
+      font-family:'LyonArabic';
+      src:url('COMM - Lyon Arabic Display Bold.otf') format('opentype');
+      font-weight:700;
     }
 
-    .review-top {
-      margin-top: 2.5rem; /* مسافة كافية فوق العبارة */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
+    body{
+      margin:0;
+      padding:0;
+      font-family:'LyonArabic', serif !important;
+      color:var(--fg);
+      line-height:1.8;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+
+      background-color:var(--bg);
+      background-image:
+        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+        url('background.png');
+      background-repeat:no-repeat, repeat;
+      background-position:center center, top left;
+      background-attachment:scroll, scroll;
+      background-size:cover, 300px 300px;
     }
 
-    .review-top a {
-      text-decoration: none;
-      color: var(--fg);   /* نفس لون النصوص الأخرى */
-      font-size: 20px;
+    @media (max-width:768px){
+      body{ background-size:cover, 120px 120px; }
     }
 
-    .custom-map-icon {
-      width: 40px;
-      height: 40px;
-      filter: invert(48%) sepia(94%) saturate(2101%) hue-rotate(347deg) brightness(99%) contrast(101%);
+    h1{
+      font-weight:700;
+      font-size:var(--headline-size);
+      line-height:1.2;
+      margin:1.5rem 0;
+      text-align:center;
     }
 
-    .section {
-      margin: 2rem 0;
-      width: 80%;
-      max-width: 900px;
+    /* العناوين الفرعية مثل "الضيافة" */
+    .section-title{
+      font-weight:700;
+      font-size:var(--headline-size);
+      text-align:center;   /* توسيط العناوين */
+      margin:1.5rem 0;
     }
 
-    .section-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-align: center;
+    /* أسماء الأصناف */
+    .menu-item .name{
+      flex:1;
+      text-align:right;
+      padding-right:2rem;
+      font-weight:700;
+      font-size:var(--item-size);
     }
 
-    .menu-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 24px;
-      padding: 0.6rem 0;
+    /* الأسعار بخط أصغر */
+    .menu-item .price{
+      flex:0 0 auto;
+      text-align:left;
+      min-width:120px;
+      font-weight:400;
+      font-size:var(--price-size);
     }
 
-    .menu-item .name {
-      flex: 1;
-      text-align: right;
-      padding-right: 2rem;
+    .menu-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:.6rem 0;
     }
 
-    .menu-item .price {
-      flex: 0 0 auto;
-      text-align: left;
-      min-width: 120px;
-      font-weight: 700;
+    .section{
+      margin:2rem 0;
+      width:80%;
+      max-width:900px;
     }
+
+    .review-top{
+      margin-top:2.5rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:.5rem;
+    }
+    .custom-map-icon{ width:40px; height:40px; }
+    .review-top a{
+      text-decoration:none;
+      color:var(--fg);
+      font-size:20px;
+      font-weight:400;
+    }
+
+    .audio-cta{
+      position:fixed;
+      bottom:1.25rem;
+      inset-inline:0;
+      margin:0 auto;
+      padding:.6rem 1rem;
+      background:transparent;
+      color:var(--fg);
+      border:2px solid var(--fg);
+      border-radius:10px;
+      font-family:'LyonArabic', serif;
+      font-size:16px;
+      cursor:pointer;
+      z-index:9999;
+    }
+    .audio-cta:hover{ opacity:.9; }
   </style>
 </head>
 <body>
 
   <div class="review-top">
     <img src="Google_Maps_icon_(2020).svg" alt="Google Maps" class="custom-map-icon">
-    <a href="https://g.page/r/CVG0VrKrikYtEBE/review" target="_blank">
+    <a href="https://g.page/r/CVG0VrKrikYtEBE/review" target="_blank" rel="noopener">
       شاركنا رأيك في الكافيه على قوقل ماب
     </a>
   </div>
@@ -126,10 +142,11 @@ body {
 
   <div class="section">
     <div class="section-title">الضيافة</div>
-    <div class="menu-item"><div class="name">قهوة + شاهي + تمر</div><div class="price">43-37-30</div></div>
+    <div class="menu-item"><div class="name">قهوة وشاهي وتمر</div><div class="price">43-37-30</div></div>
     <div class="menu-item"><div class="name">الضيافة مع جلسة خاصة</div><div class="price">50-60</div></div>
   </div>
 
+  <!-- الشاهي -->
   <div class="section">
     <div class="section-title">الشاهي</div>
     <div class="menu-item"><div class="name">شاهي</div><div class="price">15-12-8-5</div></div>
@@ -144,6 +161,7 @@ body {
     <div class="menu-item"><div class="name">كرك</div><div class="price">16-13-9-6</div></div>
   </div>
 
+  <!-- القهوة -->
   <div class="section">
     <div class="section-title">القهوة</div>
     <div class="menu-item"><div class="name">قهوة سعودية</div><div class="price">15-13-10-8</div></div>
@@ -157,6 +175,7 @@ body {
     <div class="menu-item"><div class="name">شوكولاته ساخنة</div><div class="price">12-10</div></div>
   </div>
 
+  <!-- المشروبات الباردة -->
   <div class="section">
     <div class="section-title">المشروبات الباردة</div>
     <div class="menu-item"><div class="name">موكا</div><div class="price">12-10</div></div>
@@ -177,6 +196,7 @@ body {
     <div class="menu-item"><div class="name">ماء</div><div class="price">1</div></div>
   </div>
 
+  <!-- الحلا -->
   <div class="section">
     <div class="section-title">الحلا</div>
     <div class="menu-item"><div class="name">شيزكيك</div><div class="price">14</div></div>
@@ -192,6 +212,7 @@ body {
     <div class="menu-item"><div class="name">تمر خلاص</div><div class="price">5</div></div>
   </div>
 
+  <!-- خدماتنا -->
   <div class="section">
     <div class="section-title">خدماتنا</div>
     <div class="menu-item"><div class="name">جلسة خاصة</div><div class="price">15</div></div>
@@ -209,53 +230,25 @@ body {
 
   <script>
     (function(){
-      const audio = document.getElementById('page-audio');
-      const cta = document.getElementById('audio-cta');
-
-      function tryPlay(){
-        if(!audio) return;
-        audio.volume = 0.9;
-        return audio.play();
-      }
-      function showCTA(){ if(cta) cta.hidden = false; }
-
-      // محاولة تشغيل عند التحميل
-      document.addEventListener('DOMContentLoaded', async () => {
-        try { await tryPlay(); } catch(e){ showCTA(); }
-      });
-
-      // تشغيل عند أول تفاعل من المستخدم (متوافق مع سياسات iOS/Chrome)
-      const oncePlay = async () => {
-        try { await tryPlay(); if(cta) cta.hidden = true; detach(); }
-        catch(e){ showCTA(); }
-      };
+      const audio=document.getElementById('page-audio');
+      const cta=document.getElementById('audio-cta');
+      function tryPlay(){ if(!audio) return; audio.volume=0.9; return audio.play();}
+      function showCTA(){ if(cta) cta.hidden=false; }
+      document.addEventListener('DOMContentLoaded',async()=>{ try{await tryPlay();}catch(e){showCTA();}});
+      const oncePlay=async()=>{ try{await tryPlay(); if(cta) cta.hidden=true; detach();} catch(e){showCTA();}};
       function detach(){
-        window.removeEventListener('pointerdown', oncePlay, true);
-        window.removeEventListener('touchstart', oncePlay, true);
-        window.removeEventListener('keydown', oncePlay, true);
-        window.removeEventListener('scroll', oncePlay, true);
+        window.removeEventListener('pointerdown',oncePlay,true);
+        window.removeEventListener('touchstart',oncePlay,true);
+        window.removeEventListener('keydown',oncePlay,true);
+        window.removeEventListener('scroll',oncePlay,true);
       }
-      window.addEventListener('pointerdown', oncePlay, true);
-      window.addEventListener('touchstart', oncePlay, true);
-      window.addEventListener('keydown', oncePlay, true);
-      window.addEventListener('scroll', oncePlay, true);
-
-      if(cta){ cta.addEventListener('click', oncePlay); }
-
-      // إن كان ملف الصوت مفقودًا، أظهر تلميحًا على الزر
-      audio && audio.addEventListener('error', () => {
-        if(cta){ cta.hidden = false; cta.textContent = 'تشغيل الصوت (تأكد من welcome.mp3)'; }
-      });
+      window.addEventListener('pointerdown',oncePlay,true);
+      window.addEventListener('touchstart',oncePlay,true);
+      window.addEventListener('keydown',oncePlay,true);
+      window.addEventListener('scroll',oncePlay,true);
+      if(cta){ cta.addEventListener('click',oncePlay); }
+      audio && audio.addEventListener('error',()=>{ if(cta){ cta.hidden=false; cta.textContent='تشغيل الصوت (تأكد من welcome.mp3)'; }});
     })();
   </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
