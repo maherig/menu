@@ -5,50 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>القائمة</title>
 
+  <!-- خط Amiri للأرقام -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#231B1E;   /* خلفية داكنة */
       --fg:#E6D6C7;   /* لون الخط */
-      --headline-size: clamp(26px, 4vw, 44px);  /* حجم العناوين */
-      --item-size: clamp(22px, 3.2vw, 34px);    /* حجم أسماء الأصناف */
-      --price-size: clamp(20px, 3vw, 28px);   /* حجم الأسعار */
+      --headline-size: clamp(26px, 4vw, 44px);  /* العناوين */
+      --item-size: clamp(22px, 3.2vw, 34px);    /* أسماء الأصناف */
+      --price-size: clamp(22px, 3.2vw, 34px);   /* الأسعار */
     }
 
-    @font-face{
-      font-family:'LyonArabic';
-      src:url('COMM - Lyon Arabic Display Light.otf') format('opentype');
-      font-weight:300;
-    }
-    @font-face{
-      font-family:'LyonArabic';
-      src:url('COMM - Lyon Arabic Display Bold.otf') format('opentype');
-      font-weight:700;
+    /* خط النصوص: Lyon Arabic Display Bold */
+    @font-face {
+      font-family: 'LyonArabic';
+      src: url('COMM%20-%20Lyon%20Arabic%20Display%20Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
     }
 
     body{
       margin:0;
       padding:0;
-      font-family:'LyonArabic', serif !important;
+      font-family:'LyonArabic', serif !important;  /* كل النصوص Lyon */
       color:var(--fg);
       line-height:1.8;
+      direction:rtl;
+      unicode-bidi:bidi-override;
+
       display:flex;
       flex-direction:column;
       align-items:center;
 
+      /* الخلفية: تغشية أعلى + نقش متكرر تحت */
       background-color:var(--bg);
       background-image:
-        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
         url('background.png');
       background-repeat:no-repeat, repeat;
       background-position:center center, top left;
-      background-attachment:scroll, scroll;
-      background-size:cover, 300px 300px;
+      background-attachment:scroll, scroll;        /* متوافق مع الجوال */
+      background-size:cover, 500px 500px;          /* حجم النقش على الديسكتوب */
     }
 
+    /* على الجوال: صغّر النقش */
     @media (max-width:768px){
-      body{ background-size:cover, 120px 120px; }
+      body{ background-size:cover, 500px 500px; }
     }
 
+    /* العنوان الرئيسي */
     h1{
       font-weight:700;
       font-size:var(--headline-size);
@@ -57,15 +64,26 @@
       text-align:center;
     }
 
-    /* العناوين الفرعية مثل "الضيافة" */
+    /* العناوين الفرعية (الضيافة، الشاهي...) في الوسط */
     .section-title{
       font-weight:700;
       font-size:var(--headline-size);
-      text-align:center;   /* توسيط العناوين */
+      text-align:center;
       margin:1.5rem 0;
     }
 
-    /* أسماء الأصناف */
+    /* بنية عناصر القائمة */
+    .section{
+      margin:2rem 0;
+      width:80%;
+      max-width:900px;
+    }
+    .menu-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:.6rem 0;
+    }
     .menu-item .name{
       flex:1;
       text-align:right;
@@ -73,29 +91,17 @@
       font-weight:700;
       font-size:var(--item-size);
     }
-
-    /* الأسعار بخط أصغر */
     .menu-item .price{
-      flex:0 0 auto;
-      text-align:left;
-      min-width:120px;
-      font-weight:400;
-      font-size:var(--price-size);
-    }
+  flex:0 0 auto;
+  text-align:left;
+  min-width:120px;
+  font-weight:700; /* الأرقام Bold */
+  font-size:var(--price-size);
+  font-family:'Amiri', serif !important; /* الأرقام بخط Amiri */
+}
 
-    .menu-item{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:.6rem 0;
-    }
 
-    .section{
-      margin:2rem 0;
-      width:80%;
-      max-width:900px;
-    }
-
+    /* أعلى الصفحة: أيقونة + رابط المراجعة (يبقى صغير) */
     .review-top{
       margin-top:2.5rem;
       display:flex;
@@ -107,10 +113,12 @@
     .review-top a{
       text-decoration:none;
       color:var(--fg);
-      font-size:20px;
+      font-size:20px;  /* تبقى صغيرة */
       font-weight:400;
+      font-family:'LyonArabic', serif;
     }
 
+    /* زر تشغيل الصوت عند منع التشغيل التلقائي */
     .audio-cta{
       position:fixed;
       bottom:1.25rem;
@@ -131,6 +139,7 @@
 </head>
 <body>
 
+  <!-- أعلى الصفحة: أيقونة + رابط المراجعة -->
   <div class="review-top">
     <img src="Google_Maps_icon_(2020).svg" alt="Google Maps" class="custom-map-icon">
     <a href="https://g.page/r/CVG0VrKrikYtEBE/review" target="_blank" rel="noopener">
@@ -138,8 +147,10 @@
     </a>
   </div>
 
+  <!-- العنوان الرئيسي -->
   <h1>فنجال وقدوع كافيه</h1>
 
+  <!-- الضيافة -->
   <div class="section">
     <div class="section-title">الضيافة</div>
     <div class="menu-item"><div class="name">قهوة وشاهي وتمر</div><div class="price">43-37-30</div></div>
@@ -187,7 +198,7 @@
     <div class="menu-item"><div class="name">ميلك شيك لوتس</div><div class="price">14-12</div></div>
     <div class="menu-item"><div class="name">ميلك شيك كيت كات</div><div class="price">14-12</div></div>
     <div class="menu-item"><div class="name">ميلك شيك سنكرز</div><div class="price">14-12</div></div>
-    <div class="menu-item"><div class="name">كود ريد مع النكهات</div><div class="price">15-12</div></div>
+    <div class="menu-item"><div class="name">كود ريد مع النكهات</div><div class="price">16-14</div></div>
     <div class="menu-item"><div class="name">بلاك مع النكهات</div><div class="price">16-14</div></div>
     <div class="menu-item"><div class="name">بيبسي مع النكهات</div><div class="price">14-12</div></div>
     <div class="menu-item"><div class="name">سفن أب مع النكهات</div><div class="price">14-12</div></div>
@@ -221,7 +232,7 @@
     <div class="menu-item"><div class="name">تعبئة ترمس</div><div class="price">15</div></div>
   </div>
 
-  <!-- الصوت: تشغيل تلقائي إن أمكن + تشغيل باللمس/النقر/التمرير عند الحظر -->
+  <!-- الصوت (اختياري) -->
   <audio id="page-audio" preload="auto" playsinline>
     <source src="welcome.mp3" type="audio/mpeg">
     متصفحك لا يدعم تشغيل الصوت.
@@ -229,26 +240,61 @@
   <button id="audio-cta" class="audio-cta" hidden>تشغيل الصوت</button>
 
   <script>
+    /* 1) تحويل جميع الأرقام الإنجليزية داخل الصفحة إلى أرقام عربية شرقية ٠١٢٣٤٥٦٧٨٩ */
     (function(){
-      const audio=document.getElementById('page-audio');
-      const cta=document.getElementById('audio-cta');
-      function tryPlay(){ if(!audio) return; audio.volume=0.9; return audio.play();}
-      function showCTA(){ if(cta) cta.hidden=false; }
-      document.addEventListener('DOMContentLoaded',async()=>{ try{await tryPlay();}catch(e){showCTA();}});
-      const oncePlay=async()=>{ try{await tryPlay(); if(cta) cta.hidden=true; detach();} catch(e){showCTA();}};
-      function detach(){
-        window.removeEventListener('pointerdown',oncePlay,true);
-        window.removeEventListener('touchstart',oncePlay,true);
-        window.removeEventListener('keydown',oncePlay,true);
-        window.removeEventListener('scroll',oncePlay,true);
+      const map = {'0':'٠','1':'١','2':'٢','3':'٣','4':'٤','5':'٥','6':'٦','7':'٧','8':'٨','9':'٩'};
+      const toArabicDigits = s => s.replace(/[0-9]/g, d => map[d]);
+
+      function convertAllDigits(root){
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+          acceptNode(node){
+            const p = node.parentNode && node.parentNode.nodeName.toLowerCase();
+            if (p === 'script' || p === 'style' || p === 'noscript') return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+        const nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach(n => { n.nodeValue = toArabicDigits(n.nodeValue); });
       }
-      window.addEventListener('pointerdown',oncePlay,true);
-      window.addEventListener('touchstart',oncePlay,true);
-      window.addEventListener('keydown',oncePlay,true);
-      window.addEventListener('scroll',oncePlay,true);
-      if(cta){ cta.addEventListener('click',oncePlay); }
-      audio && audio.addEventListener('error',()=>{ if(cta){ cta.hidden=false; cta.textContent='تشغيل الصوت (تأكد من welcome.mp3)'; }});
+
+      document.addEventListener('DOMContentLoaded', ()=> convertAllDigits(document.body));
+    })();
+
+    /* 2) الصوت: تشغيل تلقائي إن أمكن + تشغيل عند أول تفاعل إن مُنع */
+    (function(){
+      const audio = document.getElementById('page-audio');
+      const cta = document.getElementById('audio-cta');
+
+      function tryPlay(){ if(!audio) return; audio.volume = 0.9; return audio.play(); }
+      function showCTA(){ if(cta) cta.hidden = false; }
+
+      document.addEventListener('DOMContentLoaded', async () => {
+        try { await tryPlay(); } catch(e){ showCTA(); }
+      });
+
+      const oncePlay = async () => {
+        try { await tryPlay(); if(cta) cta.hidden = true; detach(); }
+        catch(e){ showCTA(); }
+      };
+      function detach(){
+        window.removeEventListener('pointerdown', oncePlay, true);
+        window.removeEventListener('touchstart', oncePlay, true);
+        window.removeEventListener('keydown', oncePlay, true);
+        window.removeEventListener('scroll', oncePlay, true);
+      }
+      window.addEventListener('pointerdown', oncePlay, true);
+      window.addEventListener('touchstart', oncePlay, true);
+      window.addEventListener('keydown', oncePlay, true);
+      window.addEventListener('scroll', oncePlay, true);
+
+      if(cta){ cta.addEventListener('click', oncePlay); }
+
+      audio && audio.addEventListener('error', () => {
+        if(cta){ cta.hidden = false; cta.textContent = 'تشغيل الصوت (تأكد من welcome.mp3)'; }
+      });
     })();
   </script>
+
 </body>
 </html>
